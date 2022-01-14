@@ -13,15 +13,24 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
+                Text("Restart App if You Can't Edit")
+                    .font(.body)
+                    .fontWeight(.bold)
+                    .foregroundColor(.blue)
                 ForEach(assignmentList.items) { item in
                     HStack {
                         VStack(alignment: .leading) {
                             Text(item.course)
-                                .font(.headline)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.green)
                             Text(item.description)
+                                .fontWeight(.light)
+                                .foregroundColor(.orange)
                         }
                         Spacer()
                         Text(item.dueDate, style: .date)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.red)
                     }
                 }
                 .onMove(perform: {indices, newOffset in assignmentList.items.move(fromOffsets: indices, toOffset: newOffset)
@@ -38,10 +47,11 @@ struct ContentView: View {
                                 trailing: Button(action: {
                                 showingAddAssignmentView = true}) {
                                 Image(systemName: "plus")
-            })
+                                })
+            }
         }
     }
-}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
